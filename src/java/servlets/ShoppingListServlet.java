@@ -21,12 +21,18 @@ public class ShoppingListServlet extends HttpServlet {
         
         HttpSession sess = request.getSession();
         String url;
-        if(sess.getAttribute("username") == null)
+        String action =(String) request.getParameter("action"); 
+        if(action!=null){
+            sess.invalidate();
             url="/WEB-INF/register.jsp";
-        else{
-            url="/WEB-INF/shoppingList.jsp";
+            request.setAttribute("message", "You have successfully logged out!");
+        }else{
+            if(sess.getAttribute("username") == null)
+                url="/WEB-INF/register.jsp";
+            else{
+                url="/WEB-INF/shoppingList.jsp";
+            }
         }
-        
         this.getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 

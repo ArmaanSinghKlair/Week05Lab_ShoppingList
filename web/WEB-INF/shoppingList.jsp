@@ -20,7 +20,7 @@
         <h2>List</h2>
         <form action="<c:url value='/shoppingList'/>" method="post">
             <input type="hidden" name="action" value="add"/>
-            <input type="text" name="itemToAdd" /> 
+            Add Item: <input type="text" name="itemToAdd" /> 
             <input type="submit" value="Add"/>
         </form>
             
@@ -34,7 +34,7 @@
         <c:if test="${sessionScope.shoppingListItems.size() > 0}">
             <form action="<c:url value='/shoppingList'/>" method="post">
                 <c:forEach var='item' items="${sessionScope.shoppingListItems}">
-                    item <input type="radio" name="itemToDelete" value="${item}"/>
+                    ${item} <input type="radio" name="itemToDelete" value="${item}"/><br/>
                 </c:forEach>
                     <input type="submit" value="Delete"/>
                     <input type="hidden" name="action" value="delete"/>
